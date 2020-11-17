@@ -3,15 +3,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Library</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-<p>title</p><input type="text" label = "title" id="titleInput"></input><br>
-<p>author</p><input type="text" id="authorInput"></input><br>
-<p>pages</p><input type="text" id="pagesInput"></input><br>
-<p>read</p><input type="text" id="readInput"></input><br><br>
-<button id="bookButton">add book</button><br><br>
-<div class="bookList"></div>
+<header>
+    <h1 id="logo">Library.</h1>
+</header>
+
+<div id="contents">
+    <button id="addBookBtn">Add book</button>
+    <div class="form">
+        <input type="text" label = "title" id="titleInput" placeholder="title"></input>
+
+        <input type="text" id="authorInput" placeholder="author"></input>
+
+        <input type="text" id="pagesInput" placeholder="pages"></input>
+
+        <input type="text" id="readInput" placeholder="read"></input><br>
+
+        <button id="submitBtn">submit</button><br>
+    </div>
+
+    <div class="bookList"></div>
+    </div>
 
     <script src="js/script.js"></script>
 </body>
