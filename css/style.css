@@ -1,5 +1,6 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
+    background-color:hsl(31, 54%, 72%, 10%);
 }
 
 /*div {
@@ -8,12 +9,69 @@ body {
 
 header {
     position: fixed;
+    background-color:hsl(31, 54%, 72%, 20%);
     border-bottom: solid #DEB992 1px;
     top: 0;
     left: 0;
     height: 15vh;
     min-width: 100%;
+    display: flex;
 }
+
+#fullStop{
+    color: #1BA098;
+}
+
+button {
+    background-color: #1BA098;
+    text-transform: uppercase;
+    color: white;
+    padding: 2vh;
+    border: none;
+}
+
+button:focus {
+    outline: none;
+}
+
+.accountNav {
+    margin: 4.5vh 3vh 4.5vh 2vh;
+    /*background-color: #DEB992;*/
+    font-weight: bold;
+}
+
+#loginBtn {
+    /*margin-left: auto;*/
+    margin-right: -1vh;
+    /*background-color: hsl(31, 54%, 72%, 70%);
+    border: solid 1px hsl(31, 54%, 72%, 100%);
+    color: white;*/
+    background-color: hsl(31, 54%, 72%, 10%);
+    border: solid 1px #1BA098;
+    color: #1BA098;
+}
+
+#signupBtn {
+    /*background-color: hsl(31, 54%, 72%, 100%);*/
+    color: white;
+}
+
+#logoutBtn {
+    margin-left: auto;
+    /*background-color: hsl(31, 54%, 72%, 70%);
+    border: solid 1px hsl(31, 54%, 72%, 100%);*/
+    background-color: hsl(31, 54%, 72%, 10%);
+    border: solid 1px #1BA098;
+    color: #1BA098;
+    visibility: hidden;
+    z-index: -1;
+    margin-right: -26vh;
+}
+
+/*img {
+    width: 1vh;
+    height: 1vh;
+}*/
 
 #contents {
     position: fixed;
@@ -60,14 +118,6 @@ h1 {
     margin-left: 0.5vh;
 }
 
-button {
-    background-color: #1BA098;
-    text-transform: uppercase;
-    color: white;
-    padding: 2vh;
-    border: none;
-}
-
 .bookList {
     display: flex;
     flex-wrap: wrap;
@@ -83,6 +133,7 @@ button {
     width: 30vh;
     padding: 2vh;
     margin: 3vh;
+    position: relative;
 }
 
 .tileTitle{
@@ -98,6 +149,27 @@ button {
 .tilePages {
     font-size: 0.7em;
     bottom: 0;
+    position: absolute;
+    bottom: 0;
+}
+
+.deleteBtn {
+    width: 3vh;
+    height: 3vh;
+    position: absolute;
+    top: 1vh;
+    right: 1vh;
+    background-color: transparent;
+    border: none;
+}
+
+.tileRead {
+    width: 3vh;
+    height: 3vh;
+    position: absolute;
+    bottom: 3vh;
+    right: 3vh;
+    font-size: 0.7em;
 }
 
 @media only screen and (max-width: 1200px) {

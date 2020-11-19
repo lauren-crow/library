@@ -1,26 +1,77 @@
-//add padding around all content
-//'add' button brings up window with inputs - after submit, window collapses and button reappears
-//should books be in list or be tiles (tile?)
-//login?
+//to-do
+//get login working (superficially for a start - get login buttons working)
+//delete functionality
+// read toggle (prototype)
+//hamburger menu after 450px
 
+let accountNavBtns = document.querySelectorAll('.accountNav');
+let logoinBtn = document.querySelector('#logoinBtn');
+let logoutBtn = document.querySelector('#logoutBtn');
+
+let form = document.querySelector('.form');
 let titleInput = document.querySelector('#titleInput');
 let authorInput = document.querySelector('#authorInput');
 let pagesInput = document.querySelector('#pagesInput');
 let readInput = document.querySelector('#readInput');
-let submitBrn = document.querySelector('#submitBtn');
-let bookList = document.querySelector('.bookList');
 let addBookBtn = document.querySelector('#addBookBtn');
-let form = document.querySelector('.form');
+let submitBtn = document.querySelector('#submitBtn');
 
-let myLibrary = [
-    /*{
-        title: "The Hobbit",
-        author: "Tolkien",
-        pages: "102",
-        read: "yes"
-      },*/
-];
+let bookList = document.querySelector('.bookList');
+let bookTiles = document.querySelectorAll('.bookTile');
+let tileRead = document.querySelector('.tileRead');
+let deleteBtn = document.querySelectorAll('.deleteBtn');
 
+let myLibrary = [];
+
+//login---------------------------------------------------------------------------------------
+
+let loggedIn = false;
+
+const signIn = function(){
+        loginBtn.addEventListener('click', () =>  {
+                loginBtn.style.visibility = "hidden";
+                signupBtn.style.visibility = "hidden";
+                logoutBtn.style.visibility = "visible";
+                loggedIn = true;
+        });
+        logoutBtn.addEventListener('click', () =>  {
+            loginBtn.style.visibility = "visible";
+            signupBtn.style.visibility = "visible";
+            logoutBtn.style.visibility = "hidden";
+            loggedIn = false;
+        });
+        return loggedIn;
+}
+
+loggedIn = signIn();
+
+//-------------------------------------------------------------------------------------------- main functionality
+
+//constructor
+function Book(title, author, pages, read) {
+    this.title = titleInput.value
+    this.author = authorInput.value
+    this.pages = pagesInput.value
+    this.read = readInput.value
+}
+
+function addBookToLibrary(book) {
+    const newBook = new Book();
+    myLibrary.push(newBook);
+    printNewBook();
+}
+
+/*function deleteBook() {
+    bookTiles.forEach(tile => {
+        tile.deleteBtn.addEventListener('click', () =>  {
+            console.log('function fired');
+            //myLibrary.pop();
+        });
+    });
+//}*/
+
+
+//book tiles -------------------------------------------------------------------------
 const printNewBook = function(){
     const bookTile = document.createElement('div');
     bookTile.className = ("bookTile");
@@ -41,37 +92,37 @@ const printNewBook = function(){
     bookTile.appendChild(tilePages);
     tilePages.innerHTML = "<br>"+ myLibrary[myLibrary.length - 1].pages + " pages <br><br>";
 
+    const deleteBtn = document.createElement('button');
+    deleteBtn.className = ("deleteBtn");
+    bookTile.appendChild(deleteBtn);
+    deleteBtn.innerHTML = "<img class=\"deleteBtn\" src=\"https://img.icons8.com/material-sharp/24/000000/delete-sign.png\"/>";
 
-    //bookTile.innerHTML = myLibrary[myLibrary.length - 1].title + "<br>by "+ myLibrary[myLibrary.length - 1].author + "<br>Pages: "+ myLibrary[myLibrary.length - 1].pages + "<br><br>"; 
-}
+    const tileRead = document.createElement('div');
+    tileRead.className = ("tileRead");
+    bookTile.appendChild(tileRead);
+    tileRead.innerHTML = "read<br>" + myLibrary[myLibrary.length - 1].read;
 
-const printLibrary = function() {
-    for (let i=0; i < myLibrary.length; i++){
-        bookList.bookTile.innerHTML = "Title: " + '<style class="tileTitle">' + myLibrary[i].title + "<br>Author: "+ myLibrary[i].author + "<br>Pages: "+ myLibrary[i].pages + "<br><br>"; 
+
+    if(readInput.value == "yes"){
+        bookTile.style.backgroundColor = "hsl(176, 71%, 37%, 20%)";
+        tileRead.innerHTML = "read<br> <img src=\"https://img.icons8.com/ios/24/000000/checked-2--v2.png\"/>";
     }
+    else{
+        tileRead.innerHTML = "read<br> <img src=\"https://img.icons8.com/ios/24/000000/checked-2--v3.png\"/>";
+    } 
 }
 
-window.onload = () => printLibrary();
 
-//constructor
-function Book(title, author, pages, read) {
-    this.title = titleInput.value
-    this.author = authorInput.value
-    this.pages = pagesInput.value
-    this.read = readInput.value
-}
-
-function addBookToLibrary(book) {
-    const newBook = new Book();
-    myLibrary.push(newBook);
-    printNewBook();
-}
-
+//event listeners -------------------------------------------------------------------------------------------------
 submitBtn.addEventListener('click', (book) =>  {
     addBookToLibrary(book) ;
     addBookBtn.style.visibility = "visible";
     form.style.visibility = "hidden";
     bookList.style.marginTop = "-6vh";
+    titleInput.value = ''
+    authorInput.value = ''
+    pagesInput.value = ''
+    readInput.value = ''
 });
 
 
@@ -90,12 +141,6 @@ addBookBtn.addEventListener('click', () =>  {
       var x = window.matchMedia("(max-width: 1200px)")
       changeListMargin(x) 
 });
-
-if(form.style.visibility == "hidden"){
-    alert('hidden');
-    bookList.style.color = "red";
-}
-
 
 function changeListMargin(x) {
     if (x.matches && addBookBtn.style.visibility == "hidden") { // If media query matches
