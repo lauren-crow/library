@@ -16,20 +16,24 @@
 
 <div id="contents">
     <button id="addBookBtn">Add book</button>
-    <div class="form">
-        <input type="text" label = "title" id="titleInput" placeholder="title"></input>
+    <div class="form" onsubmit="return validateForm()">
+        <input type="text" label="title" id="titleInput" placeholder="Title" required="required"></input>
 
-        <input type="text" id="authorInput" placeholder="author"></input>
+        <input type="text" label="author" id="authorInput" placeholder="Author" required></input>
 
-        <input type="text" id="pagesInput" placeholder="pages"></input>
+        <input type="number" label="pages" id="pagesInput" placeholder="Pages" required></input>
 
-        <input type="text" id="readInput" placeholder="read"></input><br>
+        <select name="read" id="readInput">
+            <option value="read">Read</option>
+            <option value="not">Not read</option>
+        </select><br>
 
-        <button id="submitBtn">submit</button><br>
+        <button id="submitBtn">submit</button>
+        <br><br>
     </div>
 
     <div class="bookList"></div>
-    </div>
+</div>
 
     <script src="js/script.js"></script>
 </body>

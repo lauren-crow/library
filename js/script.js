@@ -1,14 +1,15 @@
 //to-do
-//get login working (superficially for a start - get login buttons working)
-//delete functionality
+//get login working properly && sign-up
 // read toggle (prototype)
-//hamburger menu after 450px
+//fix scroll on pageBotttom
+//
 
 let accountNavBtns = document.querySelectorAll('.accountNav');
 let logoinBtn = document.querySelector('#logoinBtn');
 let logoutBtn = document.querySelector('#logoutBtn');
 
 let form = document.querySelector('.form');
+let inputs = document.querySelectorAll('input');
 let titleInput = document.querySelector('#titleInput');
 let authorInput = document.querySelector('#authorInput');
 let pagesInput = document.querySelector('#pagesInput');
@@ -61,18 +62,9 @@ function addBookToLibrary(book) {
     printNewBook();
 }
 
-/*function deleteBook() {
-    bookTiles.forEach(tile => {
-        tile.deleteBtn.addEventListener('click', () =>  {
-            console.log('function fired');
-            //myLibrary.pop();
-        });
-    });
-//}*/
-
 
 //book tiles -------------------------------------------------------------------------
-const printNewBook = function(){
+const printNewBook = function(tile){
     const bookTile = document.createElement('div');
     bookTile.className = ("bookTile");
     bookList.appendChild(bookTile);
@@ -96,14 +88,29 @@ const printNewBook = function(){
     deleteBtn.className = ("deleteBtn");
     bookTile.appendChild(deleteBtn);
     deleteBtn.innerHTML = "<img class=\"deleteBtn\" src=\"https://img.icons8.com/material-sharp/24/000000/delete-sign.png\"/>";
+    
+    deleteBtn.addEventListener('click', (clickedTile) => {
+        myLibrary.splice(myLibrary.indexOf[clickedTile],1);
+        bookTile => title = clickedTile.tileTitle;
+        bookList.removeChild(bookTile);
+    });
 
     const tileRead = document.createElement('div');
     tileRead.className = ("tileRead");
     bookTile.appendChild(tileRead);
     tileRead.innerHTML = "read<br>" + myLibrary[myLibrary.length - 1].read;
 
+    tileRead.addEventListener('click', (clickedTile) => {
+        if (bookTile.read=='read'){
+            bookTile.read=='not';
+        }
+        else if(bookTile.read=='not'){
+            bookTile.read=='read'
+        };
+    });
 
-    if(readInput.value == "yes"){
+
+    if(readInput.value == "read"){
         bookTile.style.backgroundColor = "hsl(176, 71%, 37%, 20%)";
         tileRead.innerHTML = "read<br> <img src=\"https://img.icons8.com/ios/24/000000/checked-2--v2.png\"/>";
     }
@@ -112,19 +119,50 @@ const printNewBook = function(){
     } 
 }
 
-
 //event listeners -------------------------------------------------------------------------------------------------
 submitBtn.addEventListener('click', (book) =>  {
-    addBookToLibrary(book) ;
-    addBookBtn.style.visibility = "visible";
-    form.style.visibility = "hidden";
-    bookList.style.marginTop = "-6vh";
-    titleInput.value = ''
-    authorInput.value = ''
-    pagesInput.value = ''
-    readInput.value = ''
+    var x = document.querySelectorAll('input').required;
+        if (titleInput.value == "" || authorInput.value == "" || pagesInput.value == ""/*titleInput.value = ""*/) {          
+            inputs.forEach(input => {
+                if (input.value == ""){
+                    input.style.border = '2px solid rgb(255, 81, 0';
+                }
+                else{
+                    input.style.border = '1px solid gray';
+                }
+            });
+        } 
+        else{            
+            addBookToLibrary(book) ;
+            addBookBtn.style.visibility = "visible";
+            form.style.visibility = "hidden";
+            bookList.style.marginTop = "-6vh";
+            titleInput.value = ''
+            authorInput.value = ''
+            pagesInput.value = ''
+            readInput.value = ''
+        }
+    /*inputs.forEach(input => {
+    if (input!=null)
+        {input.style.border = '2px solid red';}
+    //});*/
 });
 
+/*let titleValue = titleInput.value;
+let authorValue = authorInput.value;
+let pagesValue = pagesInput.value;
+let readValue = readInput.value;
+
+titleValue;
+authorValue; 
+pagesValue;
+readValue;
+
+titleInput.value;
+authorInput.value;
+pagesInput.value;
+readInput.value;
+*/
 
 addBookBtn.addEventListener('click', () =>  {
     form.style.visibility = "visible";
@@ -146,7 +184,7 @@ function changeListMargin(x) {
     if (x.matches && addBookBtn.style.visibility == "hidden") { // If media query matches
         bookList.style.marginTop = "23vh";
     } else {
-        bookList.style.marginTop = "3vh";
+        bookList.style.marginTop = "1vh";
     }
   }
   var x = window.matchMedia("(max-width: 1200px)")

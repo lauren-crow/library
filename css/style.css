@@ -1,6 +1,7 @@
 body {
     font-family: Arial, Helvetica, sans-serif;
     background-color:hsl(31, 54%, 72%, 10%);
+    overflow-y: scroll;
 }
 
 /*div {
@@ -92,29 +93,49 @@ h1 {
     /*border: solid 1px lightgrey;*/
 }
 
-.form input {
+.form input, .form select {
     margin: 0.5vh 0.5vh 3vh 0.5vh;
     padding: 2vh;
     font-size: 1em;
+    background-color:transparent;
+    border: 1px solid gray;
 }
 
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+/*
+.form input:invalid {
+    border: 2px solid rgb(226, 89, 34);
+}*/
+
 #titleInput {
-    width: 34%;
+    width: 30%;
 }
 
 #authorInput {
-    width: 34%;
+    width: 30%;
 }
 
 #pagesInput {
-    width: 6%;
+    width: 8%;
 }
 
 #readInput {
-    width: 4%;
+    width: 14%;
 }
 
 #submitBtn {
+    margin-left: 0.5vh;
+}
+
+.error {
+   /* color: rgb(255, 81, 0);*/
+   color: black;
     margin-left: 0.5vh;
 }
 
@@ -129,7 +150,7 @@ h1 {
 
 .bookTile{
     border: solid 2px black;
-    height: 20vh;
+    height: 30vh;
     width: 30vh;
     padding: 2vh;
     margin: 3vh;
@@ -139,6 +160,7 @@ h1 {
 .tileTitle{
     font-size: 1.5em;
     font-weight: bold;
+    border-bottom: solid 0.5px black;
 }
 
 .tileAuthor{
@@ -167,30 +189,30 @@ h1 {
     width: 3vh;
     height: 3vh;
     position: absolute;
-    bottom: 3vh;
-    right: 3vh;
+    bottom: 4vh;
+    right: 2vh;
     font-size: 0.7em;
 }
 
 @media only screen and (max-width: 1200px) {
     #titleInput{
-        width: 100%;
+        width: 80%;
         min-width: 200px;
     }
     
     #authorInput{
-        width: 100%;
+        width: 80%;
         min-width: 200px;
     }
 
     #pagesInput {
-        width: 15%;
-        min-width: 50px;
+        width: 10%;
+        min-width: 70px;
     }
     
     #readInput {
-        width: 15%;
-        min-width: 50px;
+        width: 12%;
+        min-width: 115px;
     }
 
     .bookList {
