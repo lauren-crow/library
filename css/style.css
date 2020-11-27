@@ -58,7 +58,7 @@ button:focus {
 }
 
 #contents {
-    margin-top: 15vh;
+    margin-top: 20vh;
     padding: 7vh 25vh 5vh 20vh;
 }
 
@@ -115,7 +115,7 @@ input:-webkit-autofill:active {
     margin-left: -9vh;
     margin-right: -3vh;
     position: absolute;
-    top: 35%;
+    top: 45%;
 }
 
 .bookTile{
